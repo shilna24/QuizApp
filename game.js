@@ -12,7 +12,7 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-let Questions = [
+let questions = [
   {
     question: "Inside which HTML element do we put the javascript",
     choice1: "<script>",
@@ -39,6 +39,12 @@ let Questions = [
     answer: 4,
   },
 ];
+fetch("questions.json").then(res=>{
+  return res.json()
+}).then(loadedQuestions=>{console.log(loadedQuestions)
+questions=loadedQuestions;
+startGame();
+}).catch(err=>{console.log(err)});
 // CONSTANTS
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 3;
@@ -104,4 +110,4 @@ incrementScore=num =>{
   scoreText.innerText=score;
 }
 
-startGame();
+// startGame();
